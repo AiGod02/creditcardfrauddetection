@@ -12,7 +12,8 @@ model = joblib.load('model_xgb1.pkl')
 # Load the test CSV file
 test_csv_path = 'fraudTest.csv'  # Ensure you provide the correct path to your CSV
 df_test = pd.read_csv(test_csv_path)
-df_test.drop("Unnamed: 0",axis=1,inplace=True)
+if 'Unnamed: 0' in df_test.columns:
+    df_test.drop("Unnamed: 0", axis=1, inplace=True)
 # Drop unnecessary columns and apply any necessary feature engineering as you've done before
 drop_cols = ['cc_num','merchant','first','last','street','zip','trans_num','unix_time','is_fraud']
 
